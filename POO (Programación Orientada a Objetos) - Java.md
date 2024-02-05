@@ -9,9 +9,9 @@ Sin embargo en esta nueva clase denominada sub-clase puede tener atributos y mé
 
 El polimorfismo es la capacidad de un objeto de hacer cuna acción de diferentes maneras mediante métodos iguales que se implementen de manera diferentes en varias clases. 
 
-- Polimorfismo estático -> Tiempo de compilación -> [[POO (Programación Orientada a Objetos)#Overload|Overload]]
+- Polimorfismo estático -> Tiempo de compilación -> [[POO (Programación Orientada a Objetos) - Java#Overload(Sobre Carga)|Overload]]
 	mediante la creación de diferentes métodos con el mismo nombre pero con parámetros diferentes y/o en un diferente orden, nos permite tener diferentes comportamientos según lo previamente mencionado.
-- Polimorfismo dinámico -> Tiempo de ejecución  -> [[POO (Programación Orientada a Objetos)#Override|Override]]
+- Polimorfismo dinámico -> Tiempo de ejecución  -> [[POO (Programación Orientada a Objetos) - Java#Override(Sobre Escritura)|Override]]
 	mediante una sobre escritura del método realizamos una implementación que tenga el comportamiento adecuado para la necesidad.
 
 ```
@@ -71,8 +71,10 @@ Es el concepto que nos define un SER/ES de una clase, ya que una clase abstracta
 - Una clase y una interfaz puede implementar múltiples interfaces.
 - Dice lo que se debe hacer mas no el como, lo que quiere decir que son métodos abstractos lo cual implica que no declara un implementación.
 
-# Override
+# Override(Sobre Escritura)
 
+Cuando realizamos un override de un método estamos  realizando una implementación de un método abstracto, esto quiere decir que estamos definiendo que va a hacer el método, lo estamos cambiando, por esto se dice que lo estamos sobre-escribiendo. 
+# Overload(Sobre Carga)
 
-# Overload
+Son múltiples métodos los cuales tienen el mismo nombre pero los parámetros que se le pasan son diferentes, tanto en cantidad como en orden. Según esto se usara el respectivo donde coincidan los parámetros y realizara la función que tiene asignado el mismo. 
 

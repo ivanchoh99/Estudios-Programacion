@@ -10,15 +10,16 @@ Soy un Ingeniero de Software con una fuerte curiosidad, un enfoque objetivo y ra
 ## Java
 
 - ~~POO (Programación Orientada a Objetos)~~
-- Memoria en Java, JVM
+- ~~Memoria en Java, JVM
 - Exceptions and Errors 
 - throw and throws 
-- diferencia entre .equals, = , ==
+- ~~diferencia entre .equals, = , ==
 - Stack overflow  y desbordamiento
 - ~~abstract e interface
-- overloading y overriding
+- ~~overloading y overriding~~
 - funtions and default.
 - caracteristicas de Java 8 y versiones posteriores.
+- Collections
 
 ## Spring Boot
 
