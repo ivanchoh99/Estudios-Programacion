@@ -2,10 +2,14 @@
 # Diferencia entre Error y Exception
 
 ## Error
+Los Error representan situaciones que son irrecuperables, estos implican una interrupción del proceso y/o ejecución, dando como resultado la finalización del mismo sin posibilidades de reiterar el mismo o seguir con otro. Estos son eventos graves que indican un problema en el sistema o en la aplicación que no se puede solucionar en el tiempo de ejecución.
 
+Normalmente están fuera del control del programador y son causados por factores externos, como falta de memoria, errores de hardware o incompatibilidades del sistema operativo. **Ejemplos:** `OutOfMemoryError`, `ThreadDeath`, `VirtualMachineError`
 ## Exception
 
+Las Exception representan situaciones recuperables, esto implica que a pesar de que algo no funciono como debía es algo a lo que se le puede dar un manejo dentro del programa o su código fuente. Estas ocurren debido a condiciones especificas que surgen durante la ejecución del programa, como lo puede ser intentar acceder a un índice inválido en un array o abrir un archivo inexistente.
 
+El programa puede incluir bloques `try-catch` para interceptar excepciones específicas y tomar acciones alternativas, como mostrar un mensaje de error al usuario o intentar corregir la situación. **Ejemplos:** `ArrayIndexOutOfBoundsException`, `FileNotFoundException`, `NullPointerException`.
 # Diferencia entre == y .equals
 
 ## == 
@@ -19,14 +23,14 @@
 
 # Memoria JVM 
 
-[[[Tutorial JVM - La arquitectura de la máquina virtual de Java explicada para principiantes (freecodecamp.org)](https://www.freecodecamp.org/espanol/news/tutorial-jvm-la-arquitectura-de-la-maquina-virtual-de-java-explicada-para-principiantes/)|Articulo FreeCodeCamp - JVM]]
+[[[Tutorial JVM - La arquitectura de la máquina virtual de Java explicada para principiantes (freecodecamp.org)](https://www.freecodecamp.org/espanol/news/tutorial-jvm-la-arquitectura-de-la-maquina-virtual-de-java-explicada-para-principiantes/)|Articulo FreeCodeCamp - JVM]] --> Articulo de referencia 
 
 ![JVM-general|600](https://www.freecodecamp.org/espanol/news/content/images/2022/10/figura2.png)
 ## Arquitectura de la maquina virtual de Java
 
 ### 1. Cargador de clase (Class Loader)
 
-![JVM-Cargador de clase|600](https://www.freecodecamp.org/espanol/news/content/images/2022/10/figura3-1.png)
+![JVM-Cargador de clase](https://www.freecodecamp.org/espanol/news/content/images/2022/10/figura3-1.png)
 
 Cuando se compila el código en java esto se almacena en un fichero .java, donde se obtiene bytecode almacenado en un fichero .class.  Si en un programa se va a hacer uso de esta clase, será cargado en memoria principal por el cargador de clases.
 
@@ -63,11 +67,84 @@ Se asignan los valores a las variables estáticas. Se cambian los valores por de
 
 ### 2. Área de datos/ memoria en tiempo de ejecución (Runtime memory/ Data Area)
 
+![JVM-Área de datos](https://www.freecodecamp.org/espanol/news/content/images/2022/10/figura4-1.png)
+#### 2.1. Área de métodos
+Todos los datos de la clase se almacenan en esta área, tanto los campos como los métodos. Si con la memoria disponible no se puede satisfacer la petición de asignación la JVM generara `OutOfMemoryError` 
+
+#### 2.2. Área del montículo (heap)
+Acá se almacenan todos los objetos y sus variables de instancia. Este se ejecuta en tiempo de ejecución, aquí asigna los arreglos e instancia de clases. 
+
+#### 2.3. Área del pilas (stack)
+Almacena las variables locales, resultados parciales(resultados de los métodos) y llamadas a métodos (Construcción de objetos). Si se requiere un tamaño de pila mayor al permitido se generara un error `StackOverflowError`.
+
+Para la llamadas de métodos se genera una entrada en la pila, llamada marco de pila (stack frame), al finalizar el llamado el stack frame se destruye
+
+##### Stack Frame (Marco de pila)
+
+- **Variables locales:** Arreglo que almacena variables locales (nombres) y sus valores. La longitud se define en el tiempo de compilación
+- **Pila de operandos:** Estructura de tipo pila que realiza operaciones intermedias durante las llamadas de los métodos. La profundidad máxima se define en tiempo de compilación.
+	
+	Las operaciones intermedias en los Stack Frames de la JVM son **instrucciones que se ejecutan durante la interpretación del bytecode**. Estas operaciones pueden ser:
+	
+	- **Operaciones aritméticas:** suma, resta, multiplicación, división, etc. 
+	- **Operaciones lógicas:** AND, OR, NOT, etc. 
+	- **Comparaciones:** mayor que, menor que, igual que, etc. 
+	- **Carga y almacenamiento de variables:** cargar una variable en la pila o almacenar un valor en una variable. 
+	- **Llamadas a métodos:** invocar otro método. 
+	- **Saltos condicionales:** ir a una instrucción específica si se cumple una condición.
+	- **Lanzamiento de excepciones:** indicar que ha ocurrido un error.
+	
+	**Las operaciones intermedias se ejecutan en orden secuencial**, siguiendo el flujo de control del programa. La JVM utiliza una pila para mantener un registro de las operaciones que se han ejecutado y de las que aún están pendientes.
+	
+- **Marco de datos:** Almacena todos los símbolos del método invocado asi como la información del bloque catch, por si se produce una excepción.
+
+#### 2.4. Registros de contador de programa (PC, program counter)
+La JVM admite múltiples hilos simultáneamente. Cada hilo tiene su propio registro contador de programa (PC) para guardar la dirección de la instrucción de la JVM ejecutándose en ese momento. Una vez ejecutada dicha instrucción, el registro PC es actualizado con la dirección de la próxima instrucción.
+
+#### 2.5. Pila de  métodos  nativos
+La JVM puede hacer uso de pilas que soporten métodos _nativos_, métodos escritos en lenguajes diferentes a Java, como C o C++. Cada hilo posee su propia pila de métodos nativos.
+
+### 3. Motor de ejecución (Execution Engine)
+
+![JVM-Execution Engine](https://www.freecodecamp.org/espanol/news/content/images/2022/10/figura6.png)
+
+Una vez que el bytecode se ha cargado en memoria y la información necesaria está disponible en el área de datos de tiempo de ejecución, el siguiente paso es ejecutar el programa. El motor de ejecución gestiona este proceso ejecutando el código de cada clase.
+
+Sin embargo, antes de ejecutar el programa, hay que traducir el bytecode a instrucciones del lenguaje máquina, usando un intérprete o un compilador JIT.
+
+#### 3.1. Intérprete
+El intérprete lee y ejecuta las instrucciones del bytecode línea a línea. Debido a esta ejecución línea por línea, el intérprete es comparativamente más lento.
+
+Otra desventaja es la reinterpretación de un método cada vez que es llamado.
+
+#### 3.2. Compilador JIT
+El motor de ejecución utiliza al interprete para ejecutar el bytecode, allí trabaja el compilador cuando encuentra código repetido. 
+
+El compilador traduce el bytecode a código maquina nativo; que es usado en las reiteradas llamadas a métodos, mejorando el rendimiento.
+
+- Generador de código intermedio
+- Optimizador de código
+- Generador de código objetivo: Traduce el código intermedio en código máquina nativo
+- Perfilador (profiler): Encuentra los _HotSpots_ (código que es ejecutado repetidamente)
+
+#### 3.3. Recolector de basura (Garbage Collector)
+El recolector de basura detecta y elimina los objetos que no tengan referencia en el área heap. Es el proceso de recuperar automáticamente durante el tiempo de ejecución la memoria que esta siendo usada por objetos que no se utilizaran nuevamente. Para esto se realizan 2 procesos.
+
+- **Marcado:** Identificación de objetos no referenciados
+- **Barrido:** Destruir los objetos identificados. 
+
+La JVM realiza automáticamente la recolección de basura a intervalos regulares, no siendo necesaria su gestión separadamente. Puede ser disparada invocando `System.gc()`, aunque la ejecución no está garantizada.
+
+**Nota:** hay otro tipo de colector de basura llamado **Barrido de Marcas Concurrente** **_(Concurrent Mark Sweep (CMS) GC)_**. Sin embargo, fue declarado obsoleto en Java 9 y completamente eliminado en Java 14 en favor de G1GC.
+##### 3.3.1. En serie
+Usando un solo hilo, produce un evento de tipo "parar el mundo" en el que todos los hilos de aplicación son detenidos hasta que la operación se complete.
+##### 3.3.2. En paralelo
+Es la implementación por defecto en la JVM, conocido como recolector de rendimiento _(throughput collector)_. Uitiliza múltiples hilos, pero aún necesita parar los hilos de aplicación.
+##### 3.3.3. Garbage First
+para aplicaciones multihilo con gran cantidad disponible de heap (más de 4GB). Particiona el heap en un conjunto de regiones de igual tamaño, utilizando múltiples hilos para explorarlas. G1GC identifica las regiones con el máximo de basura y realiza la limpieza prioritaria de esas regiones.
 
 
-
-3. Motor de ejecución (Execution Engine)
-
+-------------------------------------------------------------------------------
 
 [[[The Node.js Master Class - No Frameworks, No NPM (youtube.com)](https://www.youtube.com/watch?v=zSRO_b4y2cA)|Como funciona la memoria en Java]] -> **Video Youtube**
 
@@ -163,4 +240,6 @@ Se crearan 2 objetos diferentes en la memoria Heap y no en la String pool a pesa
 | 2texto | 0x76b4 |
 | 2texto2 | 0x54c4 |
 # Collections
+
+
 

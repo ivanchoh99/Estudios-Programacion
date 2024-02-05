@@ -11,10 +11,10 @@ Soy un Ingeniero de Software con una fuerte curiosidad, un enfoque objetivo y ra
 
 - ~~POO (Programación Orientada a Objetos)~~
 - ~~Memoria en Java, JVM
-- Exceptions and Errors 
-- throw and throws 
+- ~~Exceptions and Errors 
+- ~~throw and throws 
 - ~~diferencia entre .equals, = , ==
-- Stack overflow  y desbordamiento
+- ~~Stack overflow  y desbordamiento
 - ~~abstract e interface
 - ~~overloading y overriding~~
 - funtions and default.
