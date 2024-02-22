@@ -17,20 +17,20 @@ Soy un Ingeniero de Software con una fuerte curiosidad, un enfoque objetivo y ra
 - ~~Stack overflow  y desbordamiento
 - ~~abstract e interface
 - ~~overloading y overriding~~
-- funtions and default.
+- funtions and ~~default.
 - caracteristicas de Java 8 y versiones posteriores.
-- Collections
+- ~~Collections
 
 ## Spring Boot
 
-- Inyección de dependencias
-- Transactional
+- ~~Inyección de dependencias
+- ~~Transactional
 
 ## SQL
 
 - Transactional 
-- JOINS
-- Views
+- ~~JOINS
+- ~~Views
 - Primary Key e Index
 
 

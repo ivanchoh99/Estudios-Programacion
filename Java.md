@@ -1,5 +1,24 @@
+## Argumentos variables
+```
+private static void variosParametros(int... numeros){ %% Cuando se pasa multiples parametros estos se trabajan como si fueran un array %%
+	for(int numero: numeros){
+	System.out.println("numero: "+ numero);
+	}
+}
+
+private static void variosParametros(String nombre, int... numeros){ 
+	for(int numero: numeros){
+	System.out.println("nombre: "+ nombre);
+	System.out.println("numero: "+ numero);
+	}
+}
+```
+## Modificador de acceso
+**_default:_** este modificador de acceso solo nos permite acceder a objetos dentro del mismo paquete. es mas restrictivo que protected pero no mas que private.
 
 # Diferencia entre Error y Exception
+
+![Jerarquia de Errores|750](https://programacion.abrilcode.com/lib/exe/fetch.php?w=600&tok=d53c65&media=bloque3:jerarquiaexcepciones.png)
 
 ## Error
 Los Error representan situaciones que son irrecuperables, estos implican una interrupción del proceso y/o ejecución, dando como resultado la finalización del mismo sin posibilidades de reiterar el mismo o seguir con otro. Estos son eventos graves que indican un problema en el sistema o en la aplicación que no se puede solucionar en el tiempo de ejecución.
@@ -10,6 +29,29 @@ Normalmente están fuera del control del programador y son causados por factores
 Las Exception representan situaciones recuperables, esto implica que a pesar de que algo no funciono como debía es algo a lo que se le puede dar un manejo dentro del programa o su código fuente. Estas ocurren debido a condiciones especificas que surgen durante la ejecución del programa, como lo puede ser intentar acceder a un índice inválido en un array o abrir un archivo inexistente.
 
 El programa puede incluir bloques `try-catch` para interceptar excepciones específicas y tomar acciones alternativas, como mostrar un mensaje de error al usuario o intentar corregir la situación. **Ejemplos:** `ArrayIndexOutOfBoundsException`, `FileNotFoundException`, `NullPointerException`.
+
+### Excepciones comprobadas
+No son culpa del programador
+Ejemplo: 
+- El programa busca una imagen en una carpeta pero esta no se encuentra ahí por algún motivo.
+
+### Excepciones NO comprobadas
+Son Errores culpa del programador 
+Ejemplo: 
+-  Recorrer un array con mas posiciones de las que se declaraón.
+- Asignar a una variable un dato que no es del tipo de esa variable.
+
+
+
+### Pila de Errores (StackTrace)
+```
+try{
+	%% codigo %%
+}catch(Exception e){
+	e.printStrackTrice(System.out)
+}
+```
+
 # Diferencia entre == y .equals
 
 ## == 
@@ -241,5 +283,22 @@ Se crearan 2 objetos diferentes en la memoria Heap y no en la String pool a pesa
 | 2texto2 | 0x54c4 |
 # Collections
 
+Las colecciones son estructuras similares a los arreglos pero la principal diferencia y característica es que son dinámicos y solo almacenan objetos (No pueden almacenar tipos de datos primitivos). En Java se emplean mediante la interfaz Collection la cual permite usar una serie de métodos con los cuales manipulamos los arreglos.
+
+![Collections-Java-Diagram](https://dcodingames.com/wp-content/uploads/2023/05/JCF.png)
+
+- Entre mas funciones pueda realizar un collection, este va a ser menos eficiente 
+## 1. List
+- Permite una colección de elementos repetidos y esta indexado con valores numéricos
+- Permite acceso aleatorio
+- Puede llegar a tener bajo rendimiento en operaciones concretas que podría  ser mejor usar otras interfaces.
+## 2. Set
+Permitir una colección de elementos no repetidos sin ordenar
+
+## 3. Queue
+- No permite acceso aleatorio 
+## 4. Map
+- Colección de elementos  repetibles 
+- Indexado por clave única arbitraria 
 
 
