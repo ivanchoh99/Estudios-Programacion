@@ -14,7 +14,7 @@ El polimorfismo es la capacidad de un objeto de hacer cuna acción de diferentes
 - Polimorfismo dinámico -> Tiempo de ejecución  -> [[POO (Programación Orientada a Objetos) - Java#Override(Sobre Escritura)|Override]]
 	mediante una sobre escritura del método realizamos una implementación que tenga el comportamiento adecuado para la necesidad.
 
-```
+```java
 class Animal {
   public void makeSound() {
     System.out.println("Grr...");
@@ -32,7 +32,7 @@ class Dog extends Animal {
 }
 ```
 
-```
+```java
 public static void main(String[ ] args) {
   Animal a = new Dog();
   Animal b = new Cat();
@@ -43,7 +43,7 @@ public static void main(String[ ] args) {
 }
 ```
 
-```
+```java
 a.makeSound();
 //Outputs "Woof"
 

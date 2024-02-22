@@ -1,5 +1,5 @@
 ## Argumentos variables
-```
+```java
 private static void variosParametros(int... numeros){ %% Cuando se pasa multiples parametros estos se trabajan como si fueran un array %%
 	for(int numero: numeros){
 	System.out.println("numero: "+ numero);
@@ -44,7 +44,7 @@ Ejemplo:
 
 
 ### Pila de Errores (StackTrace)
-```
+```Java
 try{
 	%% codigo %%
 }catch(Exception e){
@@ -195,7 +195,7 @@ Se basa en 2 regiones de memoria llamada stack y heap, esto hace que se segmente
 
 - Almacenamos los nombres de las variables y sus valores siempre y cuando sean tipos de datos primitivos, sino se almacena la referencia en memoria donde se almaceno el dato o el objeto.
 
-```
+```java
 int a = 500;
 int b = 500;
 
@@ -210,7 +210,7 @@ if(a==b) --> true
 
 - Almacena los objetos creados e instanciados en tiempo de ejecución asignándoles un espacio de memoria dinámica 
 
-```
+```java
 Integer c = 500;
 Integer d = 500;
 
@@ -222,7 +222,7 @@ if(c.equals(d)) --> true
 
 Cuando creamos un objeto Integer con valor entre -127 hasta 128, este se almacena en la memoria stack con una referencia de memoria hacia la memoria cache, con el fin de optimizar el uso de memoria, de la siguiente manera.
 
-```
+```java
 Integer e = 100;
 Integer f = 100;
 
@@ -241,14 +241,14 @@ if(e==f) --> false
 
 Cuando creamos un String de la forma: 
 
-```
+```java
 String texto = "hola mundo";
 String texto2 = "hola mundo";
 ```
 
 Estamos creando un objeto de tipo String que se  esta almacenando en la String pool, al contener los 2 string el mismo contenido solo se crea una instancia del objeto y se relaciona mediante la referencia de memoria, pero si se modifica alguno de los dos:
 
-```
+```java
 String texto = "hola mundo";
 String texto2 = "hola mundo";
 
@@ -260,7 +260,7 @@ para almacenar "hola mundo mundial".
 
 Sin embargo similar que con los Integer si realizamos la creación del objeto string de la siguiente manera:
 
-```
+```java
 String 2texto = new String ("hola mundo");
 String 2texto2 = new String("hola mundo");
 ```
