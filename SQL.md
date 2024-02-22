@@ -1,4 +1,28 @@
+![COMANDOS SQL](https://sqlserverdb.com/wp-content/uploads/2022/01/comandos-sql-server1.png)
 
+# DDL (LENGUAJE DE DEFINICIÓN DE DATOS)
+
+- **[CREAR](https://sqlserverdb.com/crear-base-de-datos-sql/) :** crea una base de datos o sus objetos como tabla, vista, SP, etc.   
+- **[ALTER](https://sqlserverdb.com/alter-table-sql/) :** Modifica la estructura de la base de datos o sus objetos.   
+- **[DROP](https://sqlserverdb.com/drop-table-sql-para-eliminar-tabla/)**: elimina la estructura de la base de datos o sus objetos.   
+- [**TRUNCATE**:](https://sqlserverdb.com/truncate-table-sql/) elimina los datos de la tabla, así como el espacio asignado para los registros. La estructura de la mesa sigue siendo la misma.   
+- **[RENAME](https://sqlserverdb.com/sql-rename/):** cambia el nombre de un objeto.
+# DML (LENGUAJE DE MANIPULACIÓN DE DATOS)
+
+- [**SELECT**](https://sqlserverdb.com/sql-select-consulta-registros/)**:** recupera datos de una tabla.  
+- [**INSERT:**](https://sqlserverdb.com/sql-insert-into/) inserta datos en una tabla.  
+- [**UPDATE:**](https://sqlserverdb.com/sql-update/) actualiza los datos existentes en una tabla.  
+- [**DELETE:**](https://sqlserverdb.com/sql-delete-para-eliminar-registros/) elimina datos de la tabla.  
+- **MERGE:** realiza la operación de inserción o actualización.
+# DCL (LENGUAJE DE CONTROL DE DATOS)
+
+- [**GRANT:**](https://sqlserverdb.com/sql-grant/) proporciona acceso de usuario a la base de datos o sus objetos.  
+- [**REVOKE:**](https://sqlserverdb.com/sql-revoke/) restringe el acceso del usuario a la base de datos o sus objetos.
+# TCL (LENGUAJE DE CONTROL DE TRANSACCIONES)
+
+- [**COMMIT:**](https://sqlserverdb.com/sql-commit/) se usa para almacenar los cambios realizados mediante una transacción.  
+- **ROLLBACK:** se utiliza para revertir los cambios hasta el último estado comprometido en caso de cualquier error.  
+- **SAVEPOINT:** se utiliza para revertir la transacción hasta cierto punto.
 # JOINS [Referencia de "programación y mas"]([¿Cómo funciona INNER JOIN, LEFT JOIN, RIGHT JOIN y FULL JOIN? (programacionymas.com)](https://programacionymas.com/blog/como-funciona-inner-left-right-full-join))
 
 Los joins son sentencias que nos permiten obtener datos de distintas tablas, las cuales están relacionadas por una columna en común, para abordar este tema se utilizan estas 2 tablas de ejemplo.
