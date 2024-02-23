@@ -23,6 +23,43 @@
 - [**COMMIT:**](https://sqlserverdb.com/sql-commit/) se usa para almacenar los cambios realizados mediante una transacción.  
 - **ROLLBACK:** se utiliza para revertir los cambios hasta el último estado comprometido en caso de cualquier error.  
 - **SAVEPOINT:** se utiliza para revertir la transacción hasta cierto punto.
+
+# ÍNDICES
+
+Permiten realizar búsquedas con mayor rapidez en una base de datos. Pero no forman parte del estándar SQL. 
+
+## Índices de claves primarias:
+
+- Cada valor es único
+- No null
+
+```SQL
+ALTER TABLE tabla ADD PRIMARY KEY (columna,...)
+```
+## Índices ordinarios:
+
+- permite duplicados
+- Sí null
+
+```SQL
+CREATE INDEX nombre_del_indice ON tabla (columna)
+```
+## Índices únicos:
+
+- No permite duplicados
+- Sí null
+
+```SQL
+CREATE UNIQUE INDEX nombre_del_indice ON tabla (columna)
+```
+## Índices compuestos:
+
+- Múltiples columnas
+- Si null
+
+```SQL
+CREATE UNIQUE INDEX nombre_del_indice ON tabla (columna,...)
+```
 # JOINS [Referencia de "programación y mas"]([¿Cómo funciona INNER JOIN, LEFT JOIN, RIGHT JOIN y FULL JOIN? (programacionymas.com)](https://programacionymas.com/blog/como-funciona-inner-left-right-full-join))
 
 Los joins son sentencias que nos permiten obtener datos de distintas tablas, las cuales están relacionadas por una columna en común, para abordar este tema se utilizan estas 2 tablas de ejemplo.
@@ -184,3 +221,92 @@ PIVOT
 Crea una consulta de tabla de referencias cruzadas que muestra las ventas de productos por trimestre de cada proveedor en el año indicado. Los trimestres aparecen de izquierda a derecha como columnas y los nombres de los proveedores aparecen de arriba hacia abajo como filas.
 ![|700](https://desarrolloweb.com/articulos/images/ejemplo_practico.jpg)
 
+
+
+# TRIGGERS (DISPARADORES)
+
+Los triggers nos permite que a la hora de realizar una acción el base de datos se desencadene un evento o una acción. Un trigger es un objeto que esta asociado a una tabla y  cuando ocurra algo en esa tabla el trigger saltara (INSERT, UPDATE, DELETE).
+
+## INSERT 
+ ```SQL
+ %% Trigger para realizar un accion despues de un insert por aca fila%%
+ CREATE TRIGGER tabla_AI AFTER INSERT ON tabla FOR EACH ROW INSERT INTO tabla_del_trigger(columnas,...) VALUES (NEW.columnas,...)
+ %% Trigger para realizar un accion despues de un insert por aca sentencia%%
+ CREATE TRIGGER tabla_AI AFTER INSERT ON tabla FOR EACH STATMENT INSERT INTO tabla_del_trigger(columnas,...) VALUES (NEW.columnas,...)
+```
+
+## UPDATE
+```SQL
+CREATE TRIGGER actualizacion_tabla_BU BEFOR UPDATE ON tabla FOR EACH ROW INSERT INTO  tabla_del_trigger(columnas,...) VALUES (OLD.columnas,...,NEW.columnas,...) 
+```
+
+DELETE
+```SQL
+CREATE TRIGGER eliminacion_tabla_AU AFTER DELETE ON tabla FOR EACH ROW INSERT INTO  tabla_del_trigger(columnas,...) VALUES (OLD.columnas) 
+```
+
+# PROCEDIMIENTOS ALMACENADOS
+
+Los procedimientos almacenados se utilizan por cuestiones de eficiencia y seguridad. Lo cual consiste en almacenar un procedimiento ya sea porque es muy repetitivo por varios usuarios y/o aplicaciones o por cuidar la información de la tabla. Y con ello solo es necesario realizar el llamado a el procedimiento.
+
+```SQL
+CREATE PROCEDURE  nombre_procedimiento(parametro1 TIPO_DATO,parametro2 TIPO_DATO)
+SELECT * FROM  tabla WHERE columna = condicion;
+
+CALL nombre_procedimiento(parametro1 ,parametro2);
+
+CREATE PROCEDURE  actualizar_columna(n_columna TIPO_DATO,indexPrimaryKey TIPO_DATO)
+UPDATE tabla SET columna = n_columna WHERE columna = indexPrimaryKey;
+
+CALL actualizar_columna(42, 'AR78')
+```
+
+# Procedimientos almacenados + TRIGGERS
+
+- Bloques de ejecución BEGIN (Inicio del bloque) -> END (final del bloque)  
+- Declaración de variables DECLARE
+- Declarar un delimitador DELIMITER
+```SQL
+%% Se establece un delimitador para decir donde acaba el procedimiento almacenado, aparte del ; %%
+DELIMITER $$ 
+
+CREATE PROCEDURE procedimiento_almacenado(parametro TIPO_VALOR)
+BEGIN
+	DECLARE variable1 TIPO_DATO DEFAULT valor;
+	DECLARE variable2 TIPO_DATO;
+	SET variable2 =  variable1 - parametro;
+
+	SELECT variable2;
+END;$$
+
+%% Se restablece el limitador por defecto %%
+DELIMITER ;
+```
+
+Ejemplo con un caso de una tabla de productos: [SQL pildorasinformaticas](https://youtu.be/sNHZhXeVA4c?si=UzvgKyfNGDUMiMyu&t=750)
+
+```SQL 
+DELIMITER $$
+
+CREATE TRIGGER revisar_precio_BU BEFORE UPDATE ON productos FOR EACH ROW
+
+BEGIN
+	IF(NEW.precio < 0) THEN
+		SET NEW.precio = OLD.precio;
+	ELSEIF(NEW.precio > 1000) THEN
+		SET NEW.precio = OLD.precio;
+	END IF;
+
+END;$$
+
+DELIMITER ;
+```
+
+# VISTAS
+
+Las vistas son empleadas para la privacidad de la información, para manejar perfiles de usuarios y asi mismo darles diferentes accesos a la base de datos y que estos no puedan ver o si cierta información según los permisos concedidos.También se utilizan para la optimización de consultas cuando constantemente se realizan querys de consultas similares, para ello se genera una vista de esta consulta de tal forma que solo se consulte la vista y no se realicen constantemente llamados de consultas complejas en las tablas de la base de datos. Por ultimo se puede usar para entornos de prueba sin poner en riesgo la integridad de la base de datos.
+
+```SQL
+CREATE VIEW nombre_vista AS 
+SELECT columna2,columna3,columna5 FROM tabla WHERE columna6 = valor; 
+```
