@@ -485,3 +485,7 @@ La programación con hilos nos permite manejar y ejecutar varias acciones al mis
 3. Instanciar la clase y almacenar la instancia en variable de tipo Runnable
 4. Crear una instancia de la clase Thread pasando como parametro el objeto Runnable
 5. Poner en ejecución el hilo con el método start() de la clase Thread
+
+# Estructuras de datos
+
+# 
