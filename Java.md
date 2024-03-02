@@ -1,6 +1,36 @@
-## Argumentos variables
+# STATIC
+
+la palabra static se usa para acceder a la clase, método o campo sin necesidad de instanciar un objeto de la clase. Además de esto cuando un campo es estático quiere decir que este campo se comparte de manera comunitaria para todas las instancias de la clase, de tal forma que si tenemos campo incremental y lo aumentamos cada vez que se crea un objeto este va a tener el mismo numero de instancias creadas del objeto. Ej:
+
 ```java
-private static void variosParametros(int... numeros){ %% Cuando se pasa multiples parametros estos se trabajan como si fueran un array %%
+public class Persona{
+	private String nombre;
+	private static int personasInstanciadas = 0;
+
+	public Persona(String nombre){
+		this.nombre = nombre;
+		personasInstanciadas++;
+	}
+}
+
+public class Principal{
+
+	public static void main(String[] args){
+		Persona p1 = new Persona("ivan");
+		Persona p2 = new Persona("maria");
+		
+		System.out.println("Personas instanciadas: " + Persona.personasInstanciadas);
+	}
+}
+
+```
+
+Desde un contexto statico no podemos acceder a un contexto dinámico pero si de manera viceversa.
+
+# Argumentos variables
+```java
+private static void variosParametros(int... numeros){ 
+%% Cuando se pasa multiples parametros estos se trabajan como si fueran un array %%
 	for(int numero: numeros){
 	System.out.println("numero: "+ numero);
 	}
@@ -13,7 +43,7 @@ private static void variosParametros(String nombre, int... numeros){
 	}
 }
 ```
-## Modificador de acceso
+# Modificador de acceso
 **_default:_** este modificador de acceso solo nos permite acceder a objetos dentro del mismo paquete. es mas restrictivo que protected pero no mas que private.
 
 # Diferencia entre Error y Exception
@@ -330,4 +360,161 @@ Los streams o flujos de datos se utilizan para enviar información desde un prog
 
 
 
+# Programación Genérica
 
+consiste en escribir código que pueda utilizar para diferentes tipos de objetos. Utilizando parámetros de tipo. Permite comprobaciones de errores en tiempo de compilación.
+
+## Clase genérica
+
+```java
+
+public class ClaseGenerica<T> {
+	private T primero;
+	
+	public ClaseGenerica(){
+		primero = null
+	}
+	
+	public void setPrimero(T nuevoValor){
+		primero = nuevoValor
+	}
+	
+	public T getprimero(){
+		return primero
+	}
+}
+
+public static void main(String[] args){
+	
+	ClaseGenerica<String> una = new ClaseGenerica<String>();
+	una.setPrimero("nuevo valor");
+	
+	ObjetoCualquiera obj = new ObjetoCualquiera();
+	ClaseGenerica<ObjetoCualquiera> otra = new ClaseGenerica<ObjetoCualquiera>();
+	otra.setPrimero(obj);
+}
+```
+
+## Métodos Genéricos
+
+```java
+
+public Matris{
+	public static <T> String getElementos(T[] arg){
+		return "El array tiene " + arg.length + " elementos";
+	}
+	
+	public static <T extends Comparable> T getMenor(T[] arg){
+		if(a == null || a.length == 0) return null;
+		
+		T elemntoMenor = arg[0];
+		
+		for(int x = 1; x < arg.length(); i++){
+			if(elementoMenor.compareTo(arg[x] > 0)){
+				elementoMenor=a[x];
+			}
+		}
+		
+		return elementoMenor
+	}
+}
+
+
+String nombre[] = {"ivan", "maria", "laura"}
+
+System.out.println(Matris.getElementos(nombres)) // retorna el numero de elementos que tiene el arrreglo 
+System.out.println(Matris.getMenor(nombres))// retorna el nombre con un valos lexicográficamente menor del arreglo
+```
+
+## Herencia y tipo comodín
+
+Para implementar la programación genérica en conjunto con la herencia no es posible sin utilizar los tipo comodín, ya que si tratamos de asignar tipos padres e hijos con programación genérica se van a arrojar errores. 
+
+```java
+
+public ClaseGenerica{
+
+	public static void imprimirPrimero(ClaseGenerica<? extends Empleado> p){//Utilizable para las clases empleados y sus hijos(herencias)
+		Empleado primero = p.getPrimero();
+		System.out.println(primero);
+	}
+}
+
+Empleado administrativa = new Empleado("juan")
+Jefe directoraComercial = new Jefe("maria")
+
+Empleado nuevoEmpleado = directoraComercial;
+________________________________________________________________________________________
+
+ClaseGenerica<Empleado> administrativa = new ClaseGenerica<Empleado>;
+ClaseGenerica<Jefe> directoraComercial = new ClaseGenerica<Jefe>("maria")
+
+ClaseGenerica<Empleado> nuevoEmpleado = directoraComercial; // Esto arroja un error ya que no puede convertir un objeto de tipo a jefe a un objeto de tipo Empleado
+
+ClaseGenerica.imprimirPrimero(directorComercial);
+ClaseGenerica.imprimirPrimero(administrativa);
+```
+
+# Métodos default
+
+Los métodos default se emplean para darle un implementación concreta a un método que esta en una interfaz.
+
+```java
+public interface Identificable(){
+	
+	public default void mostrarIdentificacion(){
+		System.out.println(hashcode());
+	}
+}
+```
+
+de esta manera podemos implementar la interfaz sin que requiera la sobre-escritura
+
+```java
+public class Persona implements Identificable {// Esto no arroja ningun error de implementacion
+	
+}
+
+public class Principal {
+	public static void main(String[] args){
+		p.mostrarIdentificacion();// arroja el hashcode de objeto por referencia en memoria
+	}
+}
+```
+
+```java
+
+public interface Empleado{
+	public default void mostrarTarea(){
+		System.out.println("Empleado realizando tarea...");
+	}
+}
+
+public interface Estudiante{
+	public default void mostrarTarea(){
+		System.out.println("Estudiante realizando tarea...");
+	}
+}
+
+public class Persona implements Empleado, Estudiante{
+	//Esta sobre escritura se realiza para liberar el conflicto de los 2 metodos default y definirle cual debe utilizar
+	
+	@Override
+	public void realizarTarea(){
+		Estudiante.super.realizarTarea();
+	}
+}
+```
+# Threads(Hilos) - Programación de hilos
+
+La programación con hilos nos permite manejar y ejecutar varias acciones al mismo tiempo mediante el uso de estos hilos, con lo que por ejemplo podemos descargar con un hilo e realizar otra acción de asignación de datos con otro hilo, estas acciones se realizan simultáneamente.
+
+1. Una clase que implemente la interfaz Runnable
+2. Implementar el método run()
+3. Instanciar la clase y almacenar la instancia en variable de tipo Runnable
+4. Crear una instancia de la clase Thread pasando como parametro el objeto Runnable
+5. Poner en ejecución el hilo con el método start() de la clase Thread
+
+# Estructuras de datos
+
+# 
