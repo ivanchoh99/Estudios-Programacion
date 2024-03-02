@@ -36,12 +36,10 @@ Ejemplo:
 - El programa busca una imagen en una carpeta pero esta no se encuentra ahí por algún motivo.
 
 ### Excepciones NO comprobadas
-Son Errores culpa del programador 
+Son Errores culpa del programador, que se podrían solventar y manejar de una mejor manera.
 Ejemplo: 
--  Recorrer un array con mas posiciones de las que se declaraón.
+-  Recorrer un array con mas posiciones de las que se declararon.
 - Asignar a una variable un dato que no es del tipo de esa variable.
-
-
 
 ### Pila de Errores (StackTrace)
 ```Java
@@ -49,6 +47,30 @@ try{
 	%% codigo %%
 }catch(Exception e){
 	e.printStrackTrice(System.out)
+}
+```
+
+### throws y throw
+
+- **throws:** Se utiliza para declarar las excepciones que se pueden producir en un método determinado 
+```java
+public void miMetodo() throws IOException{
+//codigo alguno 
+}
+```
+- **throw:** Se utiliza para lanzar la excepción y se pone dentro del bloque de código donde se desea arrojar esta excepción.
+```java
+	if(condicion) throw new CustomeException
+```
+
+### Creación de exception
+
+```java
+class CustomeException extends Exception{
+	public CustomeException(){} 
+	public CustomeException(String msj){
+		super(msj);
+	} 
 }
 ```
 
@@ -300,5 +322,12 @@ Permitir una colección de elementos no repetidos sin ordenar
 ## 4. Map
 - Colección de elementos  repetibles 
 - Indexado por clave única arbitraria 
+
+
+# Streams 
+
+Los streams o flujos de datos se utilizan para enviar información desde un programa java a un sitio a través de la red, para acceder a ficheros externos. 
+
+
 
 
