@@ -357,9 +357,6 @@ Permitir una colección de elementos no repetidos sin ordenar
 # Streams 
 
 Los streams o flujos de datos se utilizan para enviar información desde un programa java a un sitio a través de la red, para acceder a ficheros externos. 
-
-
-
 # Programación Genérica
 
 consiste en escribir código que pueda utilizar para diferentes tipos de objetos. Utilizando parámetros de tipo. Permite comprobaciones de errores en tiempo de compilación.
@@ -515,6 +512,66 @@ La programación con hilos nos permite manejar y ejecutar varias acciones al mis
 4. Crear una instancia de la clase Thread pasando como parametro el objeto Runnable
 5. Poner en ejecución el hilo con el método start() de la clase Thread
 
-# Estructuras de datos
+Clase Thread nos determina una ejecución de hilo, dentro esta clase tenemos múltiples métodos para manipular la ejecución de nuestro método. Ej "stativ void sleep()" pausa la ejecución de nuestro hilo y con "void interrupt()" nos arroja una excepción y detiene la ejecución del hilo, aquí debemos manipular la excepción.  
 
-# 
+Para la sincronización de hilos podemos usar diferentes opciones. Si deseamos solo sincronizar para que se sincronicen basado en una sola condición podemos usar la palabras reservadas syncronized, await y notify. Sin embargo si deseamos validar diferentes condiciones debemos emplear la interfaces Condition
+
+ ```java
+ public class MiClase{
+	
+	private Lock bloqueo = new ReentrantLock();
+	private Condition condicion;
+	condicion = bloque.newConditio();
+	condicion1 = bloque.newConditio();
+	
+	public synchronized void miMetodo(){
+			
+		bloqueo.lock();
+		try{
+			while(condicionNesaria){
+				condicion.await();
+			}
+			condicion.signalAll();
+		} finally {
+			bloqueo.unlock
+		}
+	}
+	
+ }
+
+
+public synchronized class MiClase2{
+	
+	private Lock bloqueo = new ReentrantLock();
+	private Condition condicion;
+	condicion = bloque.newConditio();
+	condicion1 = bloque.newConditio();
+	
+	public synchronized void miMetodo(){
+			
+			while(condicionNesaria){
+				await();
+			}
+			notify();
+		}
+	}
+	
+}
+
+public class EjecucionHilo implements Runnable{
+	
+	@Override
+	public void run(){
+		while(true){
+			banco.miMetodo();
+		}
+	}
+	
+}
+```
+
+
+
+# Sockets
+
+Los sockets son sistemas de tipo Cliente Servidor. Donde nuestro cliente va a enviar información al servidor lo cual le permite comunicarse directamente mediante una transferencia de datos. Para configurar esto necesitamos la dirección del Servidor y su puerta de entrada. 
