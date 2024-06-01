@@ -22,3 +22,34 @@ Es una plataforma de contenedores, una herramienta para crear y administrar cont
 3. Docker Engine.
 4. CONTENEDOR 
 
+# Persistencia de los datos en docker 
+
+se usan volúmenes y cuando arrancamos nuestro contenedor este volumen se especifica con la bandera -v
+
+# Contenedor utilitario
+
+se conecta a nuestro conector de base de datos y nos  permite manipular la consola de nuestro contenedor de base de datos mediante la terminal.
+
+- Habilitar la linea de comandos -> -it
+- Se elimina el contenedor cuando se detenga -> --rm
+- Se establece la red en de la cual va a hacer parte el contendor -> --network
+- Se establece la imagen para el contenedor --> mysql:8
+- Linea de comandos -> bash o bin/bash
+
+``` docker
+docker run -it --rm --network spring mysql:8 bash
+```
+
+# Arguments y Environment
+
+## ARG 
+- Se utiliza únicamente dentro del Dockerfile. 
+- Configuración dinámica en la construcción de la imagen con la bandera --build-arg
+## ENV
+- Se configura dentro del Dockerfile y también en nuestro código (comandos). 
+- Se puede configurar en el Dockerfile ENV y vía comandos con la bandera -e o --env
+
+```Docker
+docker run -p 8001:8090 --env PORT=8090 -d --name conenedorName --network networkName imagenBase
+```
+

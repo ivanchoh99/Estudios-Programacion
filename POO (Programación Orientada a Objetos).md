@@ -9,9 +9,9 @@ Sin embargo en esta nueva clase denominada sub-clase puede tener atributos y mé
 
 El polimorfismo es la capacidad de un objeto de hacer cuna acción de diferentes maneras mediante métodos iguales que se implementen de manera diferentes en varias clases. De igual forma relacionado con la herencia el polimorfismo permite que un objeto de tipo hijo se pueda manipular como un objeto padre.
 
-- Polimorfismo estático -> Tiempo de compilación -> [[POO (Programación Orientada a Objetos) - Java#Overload(Sobre Carga)|Overload]]
+- Polimorfismo estático -> Tiempo de compilación -> [[POO (Programación Orientada a Objetos)#Overload(Sobre Carga)|Overload]]
 	mediante la creación de diferentes métodos con el mismo nombre pero con parámetros diferentes y/o en un diferente orden, nos permite tener diferentes comportamientos según lo previamente mencionado.
-- Polimorfismo dinámico -> Tiempo de ejecución  -> [[POO (Programación Orientada a Objetos) - Java#Override(Sobre Escritura)|Override]]
+- Polimorfismo dinámico -> Tiempo de ejecución  -> [[POO (Programación Orientada a Objetos)#Override(Sobre Escritura)|Override]]
 	mediante una sobre escritura del método realizamos una implementación que tenga el comportamiento adecuado para la necesidad.
 
 ```java

@@ -22,3 +22,4 @@ Esta área se refiere a la capacidad de detectar, responder y recuperarse de inc
 
 # Seguridad Informática 
 Conjunto de tecnologías, procesos y practicas diseñadas para proteger redes, dispositivos, programas y datos. Las redes son necesarias protegerlas para que los dispositivos no puedan ser vulnerado, de igual forma las aplicaciones nos ayudan a defendernos de esos ataques; brindándonos seguridad, mediante procesos alerta y o verificación. 
+
