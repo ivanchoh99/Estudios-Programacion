@@ -1,0 +1,1 @@
+Los sockets son sistemas de tipo Cliente Servidor. Donde nuestro cliente va a enviar información al servidor lo cual le permite comunicarse directamente mediante una transferencia de datos. Para configurar esto necesitamos la dirección del Servidor y su puerta de entrada. 

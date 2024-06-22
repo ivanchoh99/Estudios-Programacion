@@ -16,3 +16,8 @@ Es una metodología ágil en tanto se considere como elemento clave la comunicac
 - **Programación extrema XP:** Método muy útil para abordar proyectos de _software_ con escasos requisitos o cambiantes.
 - **Feature Driven Development FDD:** Desarrollo orientado hacia la funcionalidad. Método ágil orientado al desarrollo de sistemas informáticos; centrado solamente en fases de diseño y construcción.
 - **Scrum:** Propone un marco de trabajo que da soporte a la innovación. Se obtienen rersultados con calidad y con iteraciones cortas ( _Sprints_ ). Es el más usado.
+
+# Metodologías
+- [[Kanban]]
+- [[Programación extrema (XP)]]
+- [[Scrum]]

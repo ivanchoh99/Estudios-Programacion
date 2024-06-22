@@ -1,0 +1,1 @@
+Los streams o flujos de datos se utilizan para enviar información desde un programa java a un sitio a través de la red, para acceder a ficheros externos. 
