@@ -6,7 +6,7 @@ La definición de puertos o puntos de entrada e interfaces (adaptadores) para qu
 - Port (Puerto): Definición de una interfaz pública.
 - Adapter (Adaptador): Especialización de un puerto para un contexto concreto.
 
-Para ejemplificar este concepto podemos tomar esto de [Medium article]([Arquitectura Hexagonal con Spring Boot — Parte 2 | by Luis Antonio | Medium](https://medium.com/@oliveraluis11/arquitectura-hexagonal-con-spring-boot-parte-2-bf5371d80d20)). Nuestros puertos son:
+Para ejemplificar este concepto podemos tomar esto de [Arquitectura Hexagonal con Spring Boot — Parte 2 | by Luis Antonio | Medium](https://medium.com/@oliveraluis11/arquitectura-hexagonal-con-spring-boot-parte-2-bf5371d80d20)). Nuestros puertos son:
 
 ### Ports
 Aqui vemos una 
