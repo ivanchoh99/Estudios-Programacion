@@ -16,7 +16,7 @@ Es el uso de la suplantación de la identidad de una persona o empresa con el ob
 # Software Malicioso
 Es un software diseñado para dañar dispositivos o redes, el propósito de quienes realizan el ataque es obtener alguna cosa como dinero, información para afectar a una persona o empresa.
 
-## Tipos de malware
+# Tipos de malware
 
 - **Virus informático:** un código malicioso creado para interferir con las operaciones de la computadora y dañar datos, software y hardware. El virus se instala en programas o documentos de una computadora y luego, se propaga e infecta una o más computadoras en una red.
 
@@ -55,3 +55,54 @@ La ingeniería social es asombrosamente eficaz porque las personas suelen ser co
 - **Confianza:** los agentes de amenaza establecen una relación afectiva con los/las usuarios/as, que les permite aprovecharse de ellos _con el paso del tiempo_. Hacen uso de esta relación para ganarse la confianza de la víctima y acceder a su información personal.
 
 - **Urgencia:** un agente de amenaza persuade a las personas para que respondan con rapidez sin hacer preguntas.
+
+# Determinar el tipo de ataque
+
+## Ataque de contraseña
+Tiene el propósito de acceder a dispositivos, sistemas, redes o datos protegidos por contraseña. Algunas de las variables de este ataque son:
+- Fuerza bruta
+- Tabla arcoíris o Rainbow
+**Dominio:** Seguridad de las comunicaciones y las redes.
+
+## Ataque de ingeniería social
+Algunas de las variables de este ataque son:
+
+- Phishing (Suplantación de identidad)
+- Smishing
+- Vishing
+- Pishing localizado (Spear phishing)
+- Ataque de caza de ballena (Whaling)
+- Ataque en redes sociales (Phishing en redes sociales)
+- Compromiso del correo electrónico empresarial (BEC)
+- Ataque de “agujero de agua”
+- Cebo USB (Baiting)
+- Ingeniería social física
+
+**Dominio:** Seguridad y gestión de riesgos.
+
+## Ataque fisico
+Es un incidente que no solo afecta a los medios digitales sino que también a los físicos. Algunos de las variables de este ataque son:
+
+- Cable USB malicioso
+- Unidad Flash maliciosa
+- Clonación y Skimming de tarjetas
+
+**Dominio:** Seguridad de los activos.
+
+## Inteligencia artificial antagónica
+Es una técnica que manipula la inteligencia artificial y el aprendizaje automático para perpetrar ataques de manera más eficiente.
+
+**Dominio:** Seguridad de comunicaciones y redes, Gestión de identidad y acceso.
+
+## Ataque a la cadena de suministros
+Esta dirigido a los sistemas, las aplicaciones, el hardware y el software con el fin de identificar una vulnerabilidad en la que instalar software malicioso. Este ataque puede resultar ser costoso ya que puede afectar a múltiples organizaciones y a sus integrantes. 
+
+**Dominio:** Seguridad y gestión de riesgo, arquitectura e ingeniería de seguridad y operaciones de seguridad.
+
+## Ataque criptográfico
+Este afecta las formas seguras de comunicación protegidas por un sistema criptográfico. Algunas variables son:
+- Cumpleaños
+- Colisión
+- Degradación
+
+**Dominio:** Seguridad de comunicaciones y redes.
